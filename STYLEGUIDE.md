@@ -1,131 +1,161 @@
-# Content Styleguide
+# How I Write Content For This Site
 
-This guide defines the conventions for all markdown files in this repo. Every entry — whether a project or a playground item — must follow this format so the portfolio renders it correctly.
-
----
-
-## File Naming
-
-- Use the item's `id` value as the filename: `{id}.md`
-- Lowercase, hyphen-separated: `not-a-design-system.md`
-- Place under the correct folder: `content/projects/` or `content/playground/`
+This is the format I use for every entry in this repo — projects and playground items. If it doesn't follow this, the site won't render it properly. Future me, don't skip this.
 
 ---
 
-## Frontmatter
+## File naming
 
-Every file starts with a YAML frontmatter block. Required fields are marked with `*`.
+Name the file after the `id` you pick, all lowercase with hyphens. So if the id is `not-a-design-system`, the file is `not-a-design-system.md`.
+
+Put it in the right folder:
+- New project → `content/projects/Your Section Name/`
+- New playground item → `content/playground/Your Section Name/`
+
+The folder name becomes the section title on the site, so make it readable — `Design Systems` not `design-systems`.
+
+---
+
+## The bit at the top of every file
+
+Every file starts with this block. Fill it in before writing anything else.
 
 ```yaml
 ---
-id: *           # Unique identifier. Lowercase, hyphen-separated. Never change once published.
-title: *        # Display title shown on cards and modals.
-description: *  # One or two sentences shown on the card and at the top of the modal.
-tags: *         # List of 3–6 short labels. First two appear on the card preview.
-date: *         # Human-readable month + year: "March 2024"
-status: *       # One of: completed | in-progress | experimental | prototype
-category:       # One of: design-systems | experiments | prototypes | tools (omit for general projects)
-image:          # Absolute URL to a cover image (optional)
-primaryActionLink:    # URL for the primary CTA button, e.g. live demo (optional)
-secondaryActionLink:  # URL for the secondary CTA button, e.g. GitHub repo (optional)
+id: my-project-name
+title: My Project Name
+description: One or two sentences. This shows up on the card and at the top of the modal.
+tags:
+  - React
+  - TypeScript
+  - Something Else
+date: January 2025
+status: completed
 ---
 ```
 
-### Rules
+**What each field does:**
 
-- `id` must be unique across both `projects/` and `playground/`. Once a file is published, never change the id — it's used as a key throughout the app.
-- `description` is plain text only — no markdown, no HTML. Keep it under 180 characters.
-- `tags` should be Title Case: `React`, `Design Tokens`, `TypeScript`. Aim for 3–6.
-- `date` is display text, not a machine date. Write `May 2024`, not `2024-05-01`.
-- `status` drives the tooltip badge on the card — choose the most accurate value.
+- **id** — pick something short and descriptive, lowercase with hyphens. Never change it once the file is live, it's how the app tracks the entry.
+- **title** — what shows on the card.
+- **description** — plain text only, no formatting. Keep it under 180 characters. Write it like a one-liner pitch, not a job description.
+- **tags** — Title Case, 3 to 6 of them. The first two show on the card preview, the rest appear in the modal.
+- **date** — write it human-readable: `May 2024`, not `2024-05-01`.
+- **status** — pick the closest one: `completed`, `in-progress`, `experimental`, or `prototype`. This shows up as a badge on the card.
 
----
+**Optional extras** (add these only if you have them):
 
-## Content Body
-
-The body below the frontmatter becomes the modal content. It is rendered as HTML, so standard markdown applies.
-
-### Heading Hierarchy
-
-Use `##` for top-level sections. Use `###` for subsections within a section. Never use `#` (reserved for the document title, which comes from `title` in frontmatter).
-
-```markdown
-## What I Built
-
-Introductory paragraph here.
-
-### Technical Details
-
-More specific information here.
+```yaml
+category: design-systems       # or: experiments | prototypes | tools
+image: https://...             # cover image URL
+primaryActionLink: https://... # live demo button
+secondaryActionLink: https://... # github repo button
 ```
 
-### Required Sections
+---
 
-**For projects**, include these sections in order:
+## Writing the content
 
-1. **What I Was Going For** — the motivation and overall goal. Personal, first-person voice.
-2. **Key Features** — bullet list of 4–6 features. Bold the feature name, follow with a short description.
-3. **Tech Stack** — bullet list of technologies used. Bold the name, follow with the role it played.
-4. **Development Challenges** — what was hard and how you solved it.
-5. **What I Learned** — honest reflection. Can be short.
-6. **Future Enhancements** *(optional)* — bullet list of planned improvements.
+Everything below the `---` closing line is the content that appears in the modal when someone clicks the card. Write it in markdown.
 
-**For playground items**, include these sections in order:
-
-1. **Overview** — what the piece is and why it exists. 1–2 paragraphs.
-2. **How It Works** — the approach or system explained concisely.
-3. Any additional sections relevant to the piece (e.g. breakpoints, token structure, hierarchy).
+**Start sections with `##`** — that's the biggest heading you should use here. The page title already comes from the `title` field, so don't repeat it. Use `###` if you need a subsection inside a section.
 
 ---
 
-## Writing Style
+## What to write for a project
 
-- **Voice:** First-person, conversational. Write like you're explaining it to a fellow developer over coffee — not a product page.
-- **Tone:** Direct and honest. It's okay to say "I was tired of X" or "this was harder than expected."
-- **Length:** Sections should be 1–3 paragraphs. Prefer depth over breadth — fewer sections written well beats many shallow ones.
-- **Bold:** Use `**bold**` for proper nouns (library names, component names, token names) and feature/tech names in lists. Don't bold for emphasis in prose.
-- **Code:** Use backtick inline code for token names, class names, commands, and variable names: `--nadsAccentPrimary`, `press 'c'`, `theme dark`.
-- **Lists:** Use bullet lists for features and tech stacks. Use prose paragraphs for narrative sections. Don't bullet everything.
+Keep this order. Not every section needs to be long — a short honest paragraph beats two padded ones.
+
+**1. What I Was Going For**
+Why did I build this? What problem was I trying to solve, or what did I want to learn? Write it like I'm explaining it to someone over coffee. First person, no fluff.
+
+**2. Key Features**
+A bullet list of the things worth calling out. Bold the feature name, then a short description after a dash:
+```
+- **Feature Name** — what it does and why it matters
+```
+
+**3. Tech Stack**
+Same format as features — bold the tool, then what I used it for. Don't just list names, say what role each one played.
+
+**4. Development Challenges**
+The honest part. What was actually hard? What broke? What did I have to rebuild? This is the most interesting section — don't skip it or sugarcoat it.
+
+**5. What I Learned**
+Short reflection. One or two paragraphs is fine. What would I do differently? What clicked?
+
+**6. Future Enhancements** *(only if I actually plan to do them)*
+A bullet list of what's next. Don't add this section just to have it.
 
 ---
 
-## Full Example
+## What to write for a playground item
+
+Playground items are smaller, more focused things. Usually a piece of a design system or an experiment.
+
+**1. Overview**
+What is this thing and why does it exist? One or two paragraphs.
+
+**2. How It Works**
+The interesting part — the approach, the system, the decisions I made. Keep it focused.
+
+After that, add whatever sections make sense for the piece. For a color system that might be "Theme Colors" and "Core Primitives". For a grid system it might be "Breakpoints" and "Spacing". Use judgment.
+
+---
+
+## Section descriptions
+
+To add a description under a section heading (like "Design Systems"), drop an `_index.md` file in that folder. Just write the description as plain text — no frontmatter needed, no headings. It'll show up on the site as the section intro.
+
+---
+
+## A few writing rules I want to stick to
+
+- Write in first person. This is my portfolio, not a product page.
+- Be honest. If something was hard, say it was hard. If I'd do it differently, say that too.
+- Keep sections tight. 1–3 paragraphs per section is the sweet spot. If I'm writing more than that, I'm probably padding.
+- **Bold** for tool names and feature names in lists. Not for emphasis in normal sentences.
+- Use `backtick code` for anything you'd type: command names, token names, class names, file names.
+- Bullet lists for features and stacks. Paragraphs for everything else. Don't turn the whole thing into a list.
+
+---
+
+## Quick example
 
 ```markdown
 ---
-id: my-new-project
-title: My New Project
-description: A short, plain-text description shown on the card. Under 180 characters.
+id: my-new-tool
+title: My New Tool
+description: A thing I built because I kept hitting the same frustrating problem and couldn't find anything that handled it well.
 tags:
   - React
   - TypeScript
   - Design Tokens
 date: January 2025
 status: completed
-category: tools
 primaryActionLink: https://my-live-demo.com
-secondaryActionLink: https://github.com/me/my-new-project
+secondaryActionLink: https://github.com/Alfredwooden/my-new-tool
 ---
 
 ## What I Was Going For
 
-I built this because I kept running into the same problem across projects — no good tool existed for X. So I made one that does exactly what I needed without the overhead of the existing solutions.
+I built this because I kept running into the same problem — no good tool existed for X. So I made one that does exactly what I needed without the overhead of everything else out there.
 
 ## Key Features
 
-- **Fast Setup** — zero configuration needed to get started
-- **Token-Driven** — all styles controlled via `--nads*` CSS variables
-- **Framework Agnostic** — works in React, Vue, or plain HTML
+- **Fast Setup** — zero configuration, works out of the box
+- **Token-Driven** — all styles flow through `--nads*` CSS variables so themes just work
+- **Framework Agnostic** — drop it into React, Vue, or plain HTML
 
 ## Tech Stack
 
-- **React** — component architecture and state management
-- **TypeScript** — type safety across the entire codebase
+- **React** — component architecture and state
+- **TypeScript** — I'm not going back to untyped code, ever
 - **Vite** — build tooling and dev server
 
 ## Development Challenges
 
-The hardest part was getting the X behaviour to work across Y edge cases. I ended up rebuilding the approach entirely after the first attempt hit a wall with Z.
+The tricky part was X. My first approach broke completely when Y happened, so I ended up rebuilding it from scratch with a different mental model. The second attempt was cleaner anyway.
 
 ## What I Learned
 
@@ -133,6 +163,6 @@ Scope creep is real. I started with five features and shipped two well instead o
 
 ## Future Enhancements
 
-- Add support for dark mode overrides
-- Publish as an npm package
+- Add dark mode overrides
+- Publish to npm
 ```
