@@ -1,1 +1,1 @@
-Comprehensive design system projects that establish consistent visual languages, component libraries, and the token architectures that make them work across themes and contexts.
+Design system work — the token architectures, component libraries, and visual languages that keep interfaces consistent across themes and contexts.

@@ -1,7 +1,7 @@
 ---
 id: design-system-typography-scale
 title: Typography Scale System
-description: A comprehensive typography system with semantic text styles and headline hierarchy that adapts beautifully across all device sizes.
+description: I built this type scale because picking font sizes by hand always led to inconsistent hierarchies. Name the role, not the size.
 tags:
   - Typography
   - Text Styles
@@ -27,12 +27,12 @@ Responsive scaling uses `clamp()` so sizes transition smoothly between breakpoin
 
 The headline scale has six levels, each with a distinct visual weight:
 
-- **headline-hero** — top-level page heading, large and bold
-- **headline-group** — section heading within a page
-- **headline-block** — subsection heading
-- **headline-minor** — tertiary heading, same weight as body but larger
-- **headline-label** — eyebrow text above a section, all-caps, tracked out
-- **headline-caption** — small label below a visual element
+- **`headline-hero`** — top-level page heading, large and bold
+- **`headline-group`** — section heading within a page
+- **`headline-block`** — subsection heading
+- **`headline-minor`** — tertiary heading, same weight as body but larger
+- **`headline-label`** — eyebrow text above a section, all-caps, tracked out
+- **`headline-caption`** — small label below a visual element
 
 ## Text Styles
 

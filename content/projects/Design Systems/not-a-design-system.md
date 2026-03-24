@@ -1,7 +1,7 @@
 ---
 id: not-a-design-system
 title: NADS - Not A Design System
-description: A comprehensive design system built with StencilJS, featuring design tokens, multi-theme support, and framework-agnostic components.
+description: I kept copying the same styles from project to project and getting inconsistent results. NADS is the one source of truth I actually use.
 tags:
   - Design System
   - StencilJS
